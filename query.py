@@ -24,8 +24,31 @@ def fetch_data(query: str):
     conn.close()
 
 if __name__ == "__main__":
-    query = """
+    print("Transactions:")
+    trans_query = """
     SELECT *
     FROM transactions
 """
-    fetch_data(query)
+    fetch_data(trans_query)
+
+    print("Daily:")
+    daily_query = """
+    SELECT *
+    FROM daily
+"""
+    fetch_data(daily_query)
+
+    print("Weekly:")
+    weekly_query = """
+    SELECT *
+    FROM weekly
+"""
+
+    fetch_data(weekly_query)
+
+    print("Monthly:")
+    monthly_query = """
+    SELECT *
+    FROM monthly
+"""
+    fetch_data(monthly_query)
