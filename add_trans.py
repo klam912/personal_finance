@@ -30,4 +30,7 @@ def add_transaction(date: str, trans_type: str, category: str, amount: float):
 
 if __name__ == "__main__":
     add_transaction("2025-03-17", "income", "salary", 320)
-
+    add_transaction("2025-03-18", "income", "salary", 450)
+    add_transaction("2025-03-17", "income", "zelle", 50)
+    add_transaction("2025-03-18", "income", "zelle", 10)
+    add_transaction("2025-04-18", "income", "zelle", 340)
