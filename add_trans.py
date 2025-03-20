@@ -2,7 +2,13 @@ import sqlite3
 import set_up_db
 
 
-def add_transaction(date: str, trans_type: str, category: str, amount: float):
+def add_transaction(user_input: list):
+    # Assign variables from user input
+    date = user_input[0]
+    trans_type = user_input[1]
+    category = user_input[2]
+    amount = int(user_input[3])
+
     # Validate the data types
     if not isinstance(date, str):
         raise TypeError("Date must be a string (format: YYYY-MM-DD).")
@@ -28,9 +34,4 @@ def add_transaction(date: str, trans_type: str, category: str, amount: float):
     print("Transaction added successfully!")
 
 
-if __name__ == "__main__":
-    add_transaction("2025-03-17", "income", "salary", 320)
-    add_transaction("2025-03-18", "income", "salary", 450)
-    add_transaction("2025-03-17", "income", "zelle", 50)
-    add_transaction("2025-03-18", "income", "zelle", 10)
-    add_transaction("2025-04-18", "income", "zelle", 340)
+
