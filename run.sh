@@ -1,3 +1,3 @@
 #!/bin/bash
 
-flask --app app/backend run
+python run.py
