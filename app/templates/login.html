@@ -1,20 +1,21 @@
 <html>
     <head>
         <title> Login </title>
-        <h1> Login form </h1>
-        <!--Include JS and CSS files here-->
-        <script src="static/js/login.js"></script>
-
-        <div class = "container">
-            <div class = "main" >
-                <form id="form-id" method = "post" name="my-form"
-                <label> Users:</label>
-                <input type="text" name="user-name" id="user-name" />
-                <label> Password:</label>
-                <input type="text" name="password" id="password"/>
-                <!--The submit button uses the javascript function validate() to check if credentials is in the database-->
-                <input type="button" value="SUBMIT" id="submit-button" onclick="validate_cred()"/> 
-            </div>
-        </div>
     </head>
+    <h1> Login form </h1>
+    <!--Include JS and CSS files here-->
+
+    <div class = "container">
+        <div class = "main" >
+            <form id="login-form" method = "post" name="login-form" action="/login">
+                <label> Users:</label>
+                <input type="text" name="user-name" id="user-name" required />
+                
+                <label> Password:</label>
+                <input type="password" name="password" id="password" required/>
+                
+                <input type="submit" value="SUBMIT" id="submit-button"/> 
+            </form>
+        </div>
+    </div>
 </html>
