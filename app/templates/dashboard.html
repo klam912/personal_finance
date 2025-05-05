@@ -1,6 +1,39 @@
 <html>
     <head>
         <title>Dashboard Main Page</title>
-        <h1> Welcome to the dashboard main page, {{ username }}!</h1>
     </head>
+    <body>
+        <h1> Welcome to the dashboard main page, {{ username }}!</h1>
+        <form name="user-input-dashboard" method="post" action="/user/{{username}}/dashboard">
+            <label> Income:</label>
+            <input type="number" name="income-input-dashboard" required />
+
+            <label for="income-categories"> Income category: </label>
+            <select name="income-categories" id="income-categories">
+                <option value="salary">Salary</option>
+                <option value="zelle">Zelle</option>
+            </select>
+
+            <label> Spending: </label>
+            <input type="number" name="spending-input-dashboard" required />
+
+            <label for="spending-categories"> Spending category: </label>
+            <select name="spending-categories" id="spending-categories">
+                <option value="none">None</option>
+                <option value="rent"> Rent</option>
+                <option value="groceries">Groceries</option>
+                <option value="gas">Gas</option>
+                <option value="order-out">Order out</option>
+                <option value="dining-out">Dining out</option>
+                <option value="game">Game</option>
+                <option value="clothes">Clothes</option>
+            </select>
+
+            <input type="submit" value="SUBMIT" id="dashboard-input-submit-button"/>
+        </form>
+
+        <p>User id: {{ entry }} </p>
+        <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+        <input type="button" value="Log out" id="logout-dashboard-button" onclick="redirect_to_login()"/>
+    </body>
 </html>
