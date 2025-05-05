@@ -9,3 +9,11 @@ def add_entry_user(entry):
     return response
 
 
+def add_entry_day(entry):
+    """Add income and spending information (in JSON) to the Day table"""
+    try:
+        response = supabase.table("Day").insert(entry).execute()
+        return
+    except Exception as e:
+        print(f"Failed to add entry: {str(e)}")
+        raise e

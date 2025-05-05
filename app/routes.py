@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from markupsafe import escape
-from app.add_entry import add_entry_user
+from app.add_entry import add_entry_user, add_entry_day
 from app.verify_login import verify_login
 from app.get_info import get_user_id
+from datetime import date
 
 def init_routes(app):
     # Initialize routes
@@ -23,15 +24,23 @@ def init_routes(app):
             # Get user-id
             user_id = get_user_id(username)
 
+            # Get today's date
+            today_date = str(date.today())
+
             # Create an entry
-            entry = {
-                'user_id': user_id, # placeholder
+            day_entry = {
+                'user_id': user_id,
+                'date': today_date,
                 'income': income,
                 'income_category': income_category,
                 'spending': spending,
                 'spending_category': spending_category
             }
-            return render_template('dashboard.html', username=username, entry=entry['user_id'])
+
+            # Add the entry
+            add_entry_day(day_entry)
+
+            return render_template('dashboard.html', username=username)
 
         return render_template('dashboard.html', username=username)
 
@@ -75,7 +84,6 @@ def init_routes(app):
                 'password': password
             }
 
-            # Add user info to database
             add_entry_user(user_creds)
 
             # Redirect user to login
