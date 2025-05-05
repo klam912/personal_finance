@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from markupsafe import escape
-from app.add_entry import add_entry
+from app.add_entry import add_entry_user
 from app.verify_login import verify_login
+from app.get_info import get_user_id
 
 def init_routes(app):
     # Initialize routes
@@ -9,8 +10,29 @@ def init_routes(app):
     def index():
         return render_template('index.html')
 
-    @app.route("/user/<username>/dashboard")
+    @app.route("/user/<username>/dashboard", methods=['POST', 'GET'])
     def dashboard(username):
+        if request.method == "POST":
+            # Get income and spending information
+            income = request.form.get('income-input-dashboard')
+            income_category = request.form.get('income-categories')
+
+            spending = request.form.get('spending-input-dashboard')
+            spending_category = request.form.get('spending-categories')
+
+            # Get user-id
+            user_id = get_user_id(username)
+
+            # Create an entry
+            entry = {
+                'user_id': user_id, # placeholder
+                'income': income,
+                'income_category': income_category,
+                'spending': spending,
+                'spending_category': spending_category
+            }
+            return render_template('dashboard.html', username=username, entry=entry['user_id'])
+
         return render_template('dashboard.html', username=username)
 
     @app.route("/login", methods=['POST', 'GET'])
@@ -54,7 +76,7 @@ def init_routes(app):
             }
 
             # Add user info to database
-            add_entry(user_creds)
+            add_entry_user(user_creds)
 
             # Redirect user to login
             return render_template('login.html')

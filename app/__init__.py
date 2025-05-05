@@ -1,5 +1,5 @@
 from flask import Flask
-from app.add_entry import add_entry
+from app.add_entry import add_entry_user
 from app.routes import init_routes
 from app.supabase_client import supabase
 
