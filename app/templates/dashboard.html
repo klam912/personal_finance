@@ -32,8 +32,7 @@
             <input type="submit" value="SUBMIT" id="dashboard-input-submit-button"/>
         </form>
 
-        <p>User id: {{ entry }} </p>
-        <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/index.js') }} "></script>
         <input type="button" value="Log out" id="logout-dashboard-button" onclick="redirect_to_login()"/>
     </body>
 </html>
