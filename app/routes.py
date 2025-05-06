@@ -37,6 +37,8 @@ def init_routes(app):
                 'spending_category': spending_category
             }
 
+            print(day_entry)
+
             # Add the entry
             add_entry_day(day_entry)
 
