@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>Dashboard Main Page</title>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     </head>
     <body>
         <h1> Welcome to the dashboard main page, {{ username }}!</h1>
@@ -35,5 +36,12 @@
 
         <script src="{{ url_for('static', filename='js/index.js') }} "></script>
         <input type="button" value="Log out" id="logout-dashboard-button" onclick="redirect_to_login()"/>
+
+        <h2>Monthly Income Vs. Spending</h2>
+        <div id="monthly-summary-chart"></div>
+        <script>
+            var graph = {{ graphJSON | safe }};
+            Plotly.newPlot('monthly-summary-chart', graph.data, graph.layout);
+        </script>
     </body>
 </html>
