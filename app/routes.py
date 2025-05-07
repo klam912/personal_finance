@@ -3,6 +3,7 @@ from markupsafe import escape
 from app.add_entry import add_entry_user, add_entry_day
 from app.verify_login import verify_login
 from app.get_info import get_user_id
+from app.viz import monthly_summary
 from datetime import date
 
 def init_routes(app):
@@ -40,9 +41,14 @@ def init_routes(app):
             # Add the entry
             add_entry_day(day_entry)
 
-            return render_template('dashboard.html', username=username)
+            # Update view
+            graphJSON = monthly_summary()
 
-        return render_template('dashboard.html', username=username)
+            return render_template('dashboard.html', username=username, graphJSON=graphJSON)
+
+        # GET
+        graphJSON = monthly_summary()
+        return render_template('dashboard.html', username=username, graphJSON=graphJSON)
 
     @app.route("/login", methods=['POST', 'GET'])
     def login():
